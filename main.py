@@ -21,7 +21,7 @@ def search_query():
     global output
     try:
         query = form['query'].value.decode('utf-8')
-        (output['results'], output['next']) = search.search_query(query)
+        output['results'] = search.search_query(query)
         output['status'] = 'OK'
     except KeyError, e:
         output['reason'] = 'nothing-%s' % e
@@ -30,7 +30,7 @@ def search_query():
 # mode によって実行内容が変わる
 try:
     mode = form['mode'].value
-    func = {}
+    func = {"search_query":search_query}
     if func.has_key(mode):
         output['mode'] = mode
         func[mode]()
