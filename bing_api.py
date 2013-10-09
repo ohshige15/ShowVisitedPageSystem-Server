@@ -59,7 +59,7 @@ class Bing(object):
         # レスポンス（json化）
         response = requests.get(final_url, 
                                 auth=(self.api_key, self.api_key), 
-                                headers={'User-Agent': 'My API Robot'}).json()
+                                headers={'User-Agent': 'My API Robot'}).json
         # 結果を格納する配列
         results = []
         # 返ってきたもののうち指定された情報を取得する
