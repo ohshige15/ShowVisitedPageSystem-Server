@@ -51,6 +51,25 @@ class Bing(object):
         # 結果を返す
         return results
 
+    # 関連クエリ
+    def related_search(self, query, keys=["Title"]):
+        """
+            keysには'ID','Title','BaseUrl'が入りうる
+        """
+        # 基本になるURL
+        url = 'https://api.datamarket.azure.com/Bing/Search/RelatedSearch?'
+        # 各種パラメータ
+        params = {
+            "Query": "'{0}'".format(query),
+            "Market": "'ja-JP'"
+        }
+
+        # フォーマットはjsonで受け取る
+        request_url = url + urllib.urlencode(params) + "&$format=json"
+
+        results = self._search(request_url, 50, 0, keys)
+
+        return results
 
     # APIを叩く
     def _search(self, request_url, top, skip, keys):
@@ -75,5 +94,4 @@ class Bing(object):
 
 if __name__ == '__main__':
     pass
-
 
