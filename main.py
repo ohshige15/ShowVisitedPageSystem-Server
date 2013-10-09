@@ -6,6 +6,8 @@ import cgitb; cgitb.enable()
 
 import json
 
+import search
+
 
 form = cgi.FieldStorage()
 
