@@ -4,6 +4,9 @@
 import cgi
 import cgitb; cgitb.enable()
 
+import json
+
+
 form = cgi.FieldStorage()
 
 output = {'mode':'', 'status':'NG'}
