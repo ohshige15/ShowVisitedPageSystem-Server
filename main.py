@@ -29,10 +29,26 @@ def search_query():
         output['reason'] = 'nothing-%s' % e
 
 
+#---------------------------------------------
+# クエリ推薦
+#---------------------------------------------
+# 推薦クエリを取得するとき
+# mode = get_suggestions
+def get_suggestions():
+    global output
+    try:
+        query = form['query'].value.decode('utf-8')
+        output['results'] = search.get_suggestions(query)
+        output['status'] = 'OK'
+    except KeyError, e:
+        output['reason'] = 'nothing-%s' % e
+
+
 # mode によって実行内容が変わる
 try:
     mode = form['mode'].value
-    func = {"search_query":search_query}
+    func = {"search_query": search_query,
+    		"get_suggestions": get_suggestions}
     if func.has_key(mode):
         output['mode'] = mode
         func[mode]()
